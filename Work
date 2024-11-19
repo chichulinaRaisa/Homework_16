@@ -1,0 +1,28 @@
+
+import java.util.*;
+
+public class PhoneBook {
+    private Map<String, List<String>> book;
+
+    public PhoneBook() {
+        book = new HashMap<>();
+    }
+
+    public void add(String name, String phoneNumber) {
+        book.putIfAbsent(name, new ArrayList<>());
+        book.get(name).add(phoneNumber);
+    }
+
+    public List<String> find(String name) {
+        return book.getOrDefault(name, new ArrayList<>());
+    }
+
+    public boolean containsPhoneNumber(String phoneNumber) {
+        for (List<String> numbers : book.values()) {
+            if (numbers.contains(phoneNumber)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
